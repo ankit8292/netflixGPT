@@ -7,7 +7,10 @@ import usePopularMovies from "../hooks/usePopularVideo";
 import useTrendingVideo from "../hooks/useTrendingVideo";
 import useTopRatedVideo from "../hooks/useTopRatedVideo";
 import usePopularTV from "../hooks/usePopularTV";
+import GptSearch from "./GptSearch";
+import { useSelector } from "react-redux";
 const Browse=()=>{
+    const enableGPtSearch=useSelector((store)=>store.gpt.ShowGptSearch);
     // calling the custom hook for List of Now Playing Movies
     useNowPlayingMovies();
     usePopularMovies();
@@ -18,8 +21,13 @@ const Browse=()=>{
 
     return <div> 
         <Header />
-        <MainContainer />
-        <SecondContainer />
+        { enableGPtSearch ? (
+            <GptSearch /> ) : (
+        <>
+            <MainContainer />
+            <SecondContainer />
+        </>    
+        )}
         </div>
 }
 

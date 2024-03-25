@@ -4,12 +4,15 @@ import { useDispatch,useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../utils/firebase";
 import { addUser, removeUser } from "../utils/userSlice";
-import { LOGO } from "../utils/constant";
+import { LOGO, SUPPORTED_LANGUAGES } from "../utils/constant";
+import { toggleGPTSearch } from "../utils/gptSlice";
+import { changeLanguage } from "../utils/config";
 
 
 const Header=()=>{
     const dispatch=useDispatch();
     const navigate=useNavigate();
+    const ShowGptSearch=useSelector(store=>store.gpt.ShowGptSearch)
     const isUser = useSelector((store) => store.user);
 
     //calling Auth when user click on Sign Out button
@@ -21,6 +24,14 @@ const Header=()=>{
       .catch((error) => {
         navigate("/error");
       });
+    }
+
+    const handleGptSearch=()=>{
+        dispatch(toggleGPTSearch());
+    }
+
+    const toggleLanguage=(e)=>{
+        dispatch(changeLanguage(e.target.value));
     }
 
 //calling automatically OnAuthStateChanged function whenever user sign in/signup or sign out
@@ -56,11 +67,20 @@ const Header=()=>{
             />
         {isUser && (
             <div className="flex p-2"> 
+
+            {ShowGptSearch &&(<select className="p-2 m-2 bg-gray-900 text-white" onClick={(e)=>toggleLanguage(e)}>{
+                SUPPORTED_LANGUAGES.map((lang)=>(
+                    <option key={lang.identifier} value={lang.identifier}>{lang.name}</option>
+                ))
+                }
+            </select>)}
+            <button className="py-2 px-4 mx-4 my-2 bg-purple-800 text-white rounded-lg" onClick={handleGptSearch}>{ ShowGptSearch ? "Home Page" : "GPT"} </button>
         <img
             className="hidden md:block w-12 h-12"
             alt="usericon"
             src={isUser?.photoURL}
           />
+
           
           <button onClick={handleSignOut} className="font-bold text-white ">
             (Sign Out)

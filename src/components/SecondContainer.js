@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 const SecondContainer=()=>{
     const movies=useSelector((store)=>store.movies);
-    console.log(movies.nowPlayingMovies)
+    //console.log(movies.nowPlayingMovies)
     if((Object.keys(movies.nowPlayingMovies).length===0) || (Object.keys(movies.popularMovies).length===0) || ((Object.keys(movies.trendingMovies).length===0) || (Object.keys(movies.topRatedMovies).length===0) || ((Object.keys(movies.popularTVList).length===0)))) return;
 
     return(

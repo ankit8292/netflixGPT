@@ -7,10 +7,13 @@ import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { useNavigate } from "react-router-dom";
 import { BG_URL } from "../utils/constant";
+import {CircularProgress,LinearProgress, Stack} from '@mui/material';
+import Box from '@mui/material/Box';
 
 const Login=()=>{
     const [isSignIn, setIsSignIn]=useState(true);
     const [errorMsg, setErrorMsg]=useState(null);
+    const [isLoading, setIsLoading]=useState(false);
     const dispatch=useDispatch();
     const navigate=useNavigate();
 
@@ -21,10 +24,12 @@ const Login=()=>{
         const message=checkValidData(email.current.value,password.current.value);
         setErrorMsg(message);
         if(message) return;
+        setIsLoading(true);
         if(!isSignIn){   //for sign Up
             createUserWithEmailAndPassword(auth, email.current.value,password.current.value)
             .then((response)=>{
                 const user = response.user;
+                setIsLoading(false);
                 console.log(response);
                 updateProfile(user, {
                     displayName:name.current.value,
@@ -37,15 +42,18 @@ const Login=()=>{
                         email:email,
                         photoURL:photoURL
                     }));
+                    
                     navigate('/browse');
                 })
                 .catch((error)=>{
+                    setIsLoading(false);
                     const errorCode = error.code;
                     const errorMessage = error.message;
                     setErrorMsg(errorMessage + "-" + errorCode);
                 })
             })
             .catch((error)=>{
+                setIsLoading(false);
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 setErrorMsg(errorMessage + "-" + errorCode);
@@ -54,10 +62,12 @@ const Login=()=>{
         else{            // for sign in
             signInWithEmailAndPassword(auth, email.current.value,password.current.value)
             .then((response)=>{
+                setIsLoading(false);
                // const user = response.user;
                 console.log(response)
                 navigate("/browse")
             }).catch((error)=>{
+                setIsLoading(false);
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 setErrorMsg(errorMessage + "-" + errorCode);
@@ -69,7 +79,18 @@ const Login=()=>{
     }
     return (
     <div>
-        <Header />
+        <Header className="absolute"/>
+      {isLoading ? (<Stack sx={{ color: 'grey.500' }} spacing={2} direction="row" display={"flex"} justifyContent={"center"} marginTop={"300px"} position={"absolute"} left={"0px"} right={"0px"} marginX={"auto"}>
+      <CircularProgress color="secondary" />
+      <CircularProgress color="success" />
+      <CircularProgress color="inherit" />
+    </Stack>):( 
+        <>
+<div class='w-full'>
+      <div class='h-1.5 w-full bg-pink-100 overflow-hidden'>
+        <div class='progress w-full h-full bg-pink-500 left-right'></div>
+      </div>
+</div>
         <div className="absolute">
             <img 
                 src={BG_URL}
@@ -105,6 +126,8 @@ const Login=()=>{
                     {isSignIn ?  "New to Netflix? Sign Up Now"
             : "Already registered? Sign In Now."}</p>
         </form>
+        </>
+        )} 
     </div>)
 }
 

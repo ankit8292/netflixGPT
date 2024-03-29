@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { auth } from "../utils/firebase";
 import { addUser, removeUser } from "../utils/userSlice";
 import { LOGO, SUPPORTED_LANGUAGES } from "../utils/constant";
-import { toggleGPTSearch } from "../utils/gptSlice";
+import { removeMovieData, toggleGPTSearch } from "../utils/gptSlice";
 import { changeLanguage } from "../utils/config";
 
 
@@ -32,6 +32,9 @@ const Header=()=>{
 
     const toggleLanguage=(e)=>{
         dispatch(changeLanguage(e.target.value));
+    }
+    if(ShowGptSearch){
+        dispatch(removeMovieData());
     }
 
 //calling automatically OnAuthStateChanged function whenever user sign in/signup or sign out

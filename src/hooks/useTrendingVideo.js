@@ -10,7 +10,7 @@ const useTrendingVideo=()=>{
     const getTrendingVideoList= async()=>{
         const data= await fetch('https://api.themoviedb.org/3/trending/movie/day?language=en-IN', API_options);
         const json= await data.json();
-        console.log(json);
+        //console.log(json);
         dispatch(addTrendingMovies(json.results))
 
     }

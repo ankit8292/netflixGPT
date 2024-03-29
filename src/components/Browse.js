@@ -19,7 +19,7 @@ const Browse=()=>{
     usePopularTV();
 
 
-    return <div> 
+    return <> 
         <Header />
         { enableGPtSearch ? (
             <GptSearch /> ) : (
@@ -28,7 +28,7 @@ const Browse=()=>{
             <SecondContainer />
         </>    
         )}
-        </div>
+        </>
 }
 
 export default Browse;

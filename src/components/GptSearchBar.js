@@ -65,7 +65,6 @@ const GptSearchBar=()=>{
             {isLoading && <Stack sx={{ color: 'grey.500' }} spacing={2} direction="row" display={"flex"} justifyContent={"center"} marginTop={"300px"} position={"absolute"} left={"0px"} right={"0px"} marginX={"auto"}>
       <CircularProgress color="secondary" />
       <CircularProgress color="success" />
-      <CircularProgress color="inherit" />
     </Stack>}
         </div>
     )

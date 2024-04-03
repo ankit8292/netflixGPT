@@ -95,7 +95,7 @@ const Login=()=>{
             <img 
                 src={BG_URL}
                 alt="logo"
-                className="h-screen object-cover"
+                className="h-screen object-cover md:h-full"
             />
         </div>
         <form 

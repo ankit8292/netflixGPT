@@ -4,7 +4,7 @@ const Shimmer=()=>{
     return(
      <>
         <h1 className="text-lg md:text-3xl py-4 text-white"></h1>
-        <div className="flex overflow-x-scroll no-scrollbar">
+        <div className="flex overflow-x-scroll no-scrollbar mt-52">
         <div className="flex"></div>
         {Array(10).fill(0).map((n,i)=>(
         <div className="p-2 m-2 w-65 border border-white rounded-lg shadow-lg">

@@ -41,12 +41,12 @@ const GptSearchBar=()=>{
           const data=await Promise.all(resultPromiseArray);
           dispatch(addGPTMovieResults({movieNames: moviesNameData ,movieResult: data}));
           setIsLoading(false);
-        searchText.current.value=""
+          searchText.current.value=""
     }
     return(
-        <div className="pt-[10%] flex justify-center">
+        <div className="pt-[45%] md:pt-[10%] flex justify-center">
             <form 
-                className="w-1/2 bg-black grid grid-cols-12" 
+                className="w-full md:w-1/2 bg-black grid grid-cols-12" 
                 onSubmit={(e)=>e.preventDefault()}
             >
                 <input 
@@ -63,9 +63,9 @@ const GptSearchBar=()=>{
                 </button>
             </form>
             {isLoading && <Stack sx={{ color: 'grey.500' }} spacing={2} direction="row" display={"flex"} justifyContent={"center"} marginTop={"300px"} position={"absolute"} left={"0px"} right={"0px"} marginX={"auto"}>
-      <CircularProgress color="secondary" />
-      <CircularProgress color="success" />
-    </Stack>}
+            <CircularProgress color="secondary" />
+            <CircularProgress color="success" />
+            </Stack>}
         </div>
     )
 }

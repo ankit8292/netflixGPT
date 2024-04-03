@@ -6,7 +6,7 @@ import {auth} from "../utils/firebase";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { useNavigate } from "react-router-dom";
-import { BG_URL } from "../utils/constant";
+import { BG_URL, IMAGE_AVTAR } from "../utils/constant";
 import {CircularProgress,LinearProgress, Stack} from '@mui/material';
 import Box from '@mui/material/Box';
 
@@ -33,14 +33,15 @@ const Login=()=>{
                 console.log(response);
                 updateProfile(user, {
                     displayName:name.current.value,
-                    photoURL:"https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small/user-profile-icon-free-vector.jpg"
+                    photoURL:IMAGE_AVTAR
                 }).then(()=>{
-                    const {uid, email, displayName, photoURL}=auth.currentUser;
+                    const {uid, email, displayName}=auth.currentUser;
                     dispatch(addUser({
                         displayName:displayName,
                         uid:uid,
                         email:email,
-                        photoURL:photoURL
+                        photoURL:IMAGE_AVTAR
+
                     }));
                     
                     navigate('/browse');
@@ -90,14 +91,15 @@ const Login=()=>{
         <div class='progress w-full h-full bg-pink-500 left-right'></div>
       </div>
 </div>
-        <div className="absolute">
+        <div className="absolute ">
             <img 
                 src={BG_URL}
                 alt="logo"
+                className="h-screen object-cover"
             />
         </div>
         <form 
-            className="absolute w-3/12 p-12 bg-black my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80" 
+            className="absolute w-full md:w-3/12 p-12 bg-black my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80" 
             onSubmit={(e)=>e.preventDefault()}
             >
             <h1 className="font-bold py-4 text-3xl">{isSignIn ? "Sign In " : "Sign Up"}</h1>

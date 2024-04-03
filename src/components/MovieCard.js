@@ -1,14 +1,9 @@
 import { useEffect, useState } from "react";
-import { IMG_CDN_URL, unavailableLandscape, unavailable, noPicture } from "../utils/constant";
+import { IMG_CDN_URL, noPicture } from "../utils/constant";
 
 const MovieCard = ({movieId, posterPath }) => {
-  const [open, setOpen] = useState(false);
   const [content, setContent] = useState();
- // const classes = useStyles();
   if (!posterPath) return null;
-  const handleOpen=()=>{
-    setOpen(true);
-  }
  
   return (
     <>

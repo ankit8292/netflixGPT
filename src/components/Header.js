@@ -4,7 +4,7 @@ import { useDispatch,useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../utils/firebase";
 import { addUser, removeUser } from "../utils/userSlice";
-import { LOGO, SUPPORTED_LANGUAGES } from "../utils/constant";
+import { IMAGE_AVTAR, LOGO, SUPPORTED_LANGUAGES } from "../utils/constant";
 import { removeMovieData, toggleGPTSearch } from "../utils/gptSlice";
 import { changeLanguage } from "../utils/config";
 
@@ -46,7 +46,7 @@ const Header=()=>{
                 uid: uid,
                 email: email,
                 displayName: displayName,
-                photoURL: photoURL, 
+                photoURL: IMAGE_AVTAR, 
                 }));
                 navigate('/browse');
             }
@@ -64,7 +64,7 @@ const Header=()=>{
     
         <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex flex-col md:flex-row justify-between">
             <img 
-                className="w-44"
+                className=" w-44 mx-auto md:mx-0"
                 src={LOGO}
                 alt="logo"
             />

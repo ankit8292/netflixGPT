@@ -1,7 +1,7 @@
 export const LOGO="https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png";
 
-export const IMAGE_AVTAR="";
-
+export const IMAGE_AVTAR =
+  "https://occ-0-6247-2164.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABdpkabKqQAxyWzo6QW_ZnPz1IZLqlmNfK-t4L1VIeV1DY00JhLo_LMVFp936keDxj-V5UELAVJrU--iUUY2MaDxQSSO-0qw.png?r=e6e";
 
 export const API_options = {
     method: 'GET',
@@ -12,13 +12,6 @@ export const API_options = {
   };
 
 export const IMG_CDN_URL = "https://image.tmdb.org/t/p/w500";
-
-// contentModal and singleContent
-export const unavailable =
-  "https://www.movienewz.com/img/films/poster-holder.jpg";
-
-  export const unavailableLandscape =
-  "https://user-images.githubusercontent.com/10515204/56117400-9a911800-5f85-11e9-878b-3f998609a6c8.jpg";
 
 // For Carousel
 export const noPicture =

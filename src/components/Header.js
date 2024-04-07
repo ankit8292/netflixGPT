@@ -69,7 +69,7 @@ const Header=()=>{
                 alt="logo"
             />
         {isUser && (
-            <div className="flex p-2"> 
+            <div className="mt-0.01 p-0.5 md:p-2 flex"> 
 
             {ShowGptSearch &&(<select className="p-2 m-2 bg-gray-900 text-white" onClick={(e)=>toggleLanguage(e)}>{
                 SUPPORTED_LANGUAGES.map((lang)=>(
@@ -77,7 +77,7 @@ const Header=()=>{
                 ))
                 }
             </select>)}
-            <button className="py-2 px-4 mx-4 my-2 bg-purple-800 text-white rounded-lg" onClick={handleGptSearch}>{ ShowGptSearch ? "Home Page" : "GPT"} </button>
+            <button className="mx-5 px-10 md:py-2 md:px-4 md:mx-4 md:my-2 bg-purple-800 text-white rounded-lg" onClick={handleGptSearch}>{ ShowGptSearch ? "Home Page" : "GPT"} </button>
         <img
             className="hidden md:block w-12 h-12"
             alt="usericon"
